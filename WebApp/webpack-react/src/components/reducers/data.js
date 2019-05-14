@@ -1,7 +1,6 @@
 import {ADD_DATA} from '../utils/constants';
 
 const INITIAL_STATE = {
-  twrJson:null,
   aurinObese:null,
   aurinOverweight:null
 };

@@ -13,17 +13,20 @@ export default class Experts extends React.Component {
     var one = {
       name:"Alan Wu",
       description:"Alan is good at manipulating and analysing tweets data.",
-      img:expert1
+      img:expert1,
+      link:"https://github.com/chaoxinw"
     };
     var two = {
       name:"Sean Liu",
       description:"Sean is an expert in designing web crawling programs to obtain tweets data.",
-      img:expert2
+      img:expert2,
+      link:"https://github.com/RONGXIAOL"
     };
     var three = {
       name:"Defang Shi",
       description:"Defang is an excellent teammate when dealing with database-related issues.",
-      img:expert3
+      img:expert3,
+      link:"https://github.com/DefangS"
     };
     var four = {
       name:"Eric",
@@ -33,7 +36,8 @@ export default class Experts extends React.Component {
     var five = {
       name:"Rondo",
       description:"Rondo is goot at front-end design and development.",
-      img:expert5
+      img:expert5,
+      link:"https://github.com/zijies1"
     };
     return (
       <section id="team" className="py-5 text-center bg-light">
