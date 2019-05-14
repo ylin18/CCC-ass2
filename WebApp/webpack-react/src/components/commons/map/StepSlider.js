@@ -26,8 +26,6 @@ class StepSlider extends React.Component {
   render() {
     const {time} = this.props.feature;
     const { classes } = this.props;
-    console.log(time);
-
     return (
       <div className={classes.root}>
         <Slider

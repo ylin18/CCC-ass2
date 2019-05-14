@@ -25,7 +25,7 @@ class Header extends React.Component {
     return (
       <nav className="navbar navbar-expand-lg navbar-light fixed-top bg-light" id="main-nav">
         <div className="container">
-          <a href="/" className="navbar-brand">SPM-Gluttony</a>
+          <a href="/" className="navbar-brand">Gluttony</a>
           <button className="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
             <span className="navbar-toggler-icon"></span>
           </button>

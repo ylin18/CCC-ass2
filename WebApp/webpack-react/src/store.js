@@ -22,17 +22,9 @@ axios.get(root+"aurinOverweight")
           // handle error
         console.log(error);
       });
-axios.get(root+"twrGeometry")
-      .then(res => {
-        store.dispatch(addData(res.data,"twrJson"));
-      })
-      .catch((error)=>{
-          // handle error
-        console.log(error);
-      });
 
 const timePeriods = ["T1","T2","T3","T4"];
-const cities = ["melbourne","perth","brisbane"];
+const cities = ["melbourne","sydney","perth","brisbane"];
 var points = [];
 timePeriods.map(time=>{
   var obj = [];
