@@ -4,16 +4,16 @@ import Chart from "./charts/Chart";
 import PieChart from "./charts/PieChart";
 import TimeBarChart from "./charts/TimeBarChart";
 import Header from './Header';
-import {changeChart} from "../actions";
+import {changeChart,changeYear} from "../actions";
 
-
+var years = ["2014","2015","2019"];
 
 class MapContainer extends React.Component {
 
   constructor(props){
     super(props);
-    this.yearTotal = [];
-    this.calTimeBarChart();
+    // this.yearTotal = [];
+    // this.calTimeBarChart();
     this.toBarChart = () => {
       this.props.changeChart("BarChart");
     };
@@ -22,6 +22,9 @@ class MapContainer extends React.Component {
     };
     this.toTimeBarChart = () => {
       this.props.changeChart("TimeBarChart");
+    };
+    this.changeYear = e => {
+      this.props.changeYear(e.target.value);
     };
   }
 
@@ -59,16 +62,15 @@ class MapContainer extends React.Component {
       barChart.push([]);
       year.cities.map(city=>{
         barChart[count].push(city.num);
-        // console.log(city);
       })
       count += 1;
     });
 
-    for(var i = 0; i < 2; i++){
-      for(var j = 0; j < 4; j++){
-        barChart[i][j] = barChart[i][j]/this.yearTotal[i][j];
-      }
-    }
+    // for(var i = 0; i < 3; i++){
+    //   for(var j = 0; j < 4; j++){
+    //     barChart[i][j] = barChart[i][j]/this.yearTotal[i][j];
+    //   }
+    // }
     return barChart;
   }
 
@@ -81,7 +83,6 @@ class MapContainer extends React.Component {
     chartsData.map(year=>{
       barChart.push([]);
       var tweets_num = 0;
-      this.yearTotal.push([]);
       year.cities.map(city=>{
         var data_d = [];
         var timeblocks = city.timeblocks;
@@ -89,58 +90,68 @@ class MapContainer extends React.Component {
           data_d.push(timeblocks[list[i]]);
           tweets_num += timeblocks[list[i]];
         }
-        this.yearTotal[count].push(tweets_num);
         barChart[count].push(data_d);
         // console.log(city);
       })
       count += 1;
     });
 
-    for(var i = 0; i < 2; i++){
-      for(var j = 0; j < 4; j++){
-        for(var k = 0; k < 8; k++){
-          barChart[i][j][k] = barChart[i][j][k]/this.yearTotal[i][j];
-        }
-      }
-    }
+
+    // for(var i = 0; i < 3; i++){
+    //   for(var j = 0; j < 4; j++){
+    //     for(var k = 0; k < 8; k++){
+    //       barChart[i][j][k] = barChart[i][j][k]/this.yearTotal[i][j];
+    //     }
+    //   }
+    // }
 
     return barChart;
   }
 
   renderChart(){
+    var count = 0;
+    var yearIndex = 0;
+    if(this.props.chart.year==="2014"){
+      yearIndex = 0;
+    }else if(this.props.chart.year==="2015"){
+      yearIndex = 1;
+    }else if(this.props.chart.year==="2019"){
+      yearIndex = 2;
+    }
+
     if(this.props.chart.currentChart === "BarChart"){
       return(<Chart data = {this.calBarChart()}/>);
     }else if(this.props.chart.currentChart === "TimeBarChart"){
-      return(<TimeBarChart data = {this.calTimeBarChart()}/>);
+      return(<TimeBarChart data = {this.calTimeBarChart()} index={yearIndex}/>);
     } else if(this.props.chart.currentChart === "PieChart"){
       var pieChart_d = this.calPieChart();
       return(
-        <div>
-          <div className="display-4 text-dark text-center mt-2">Top 5 food tags for different cities in 2015</div>
+        <div className="mb-2">
+          <div className="display-4 text-dark text-center mt-2">Top 5 food tags for different cities in {years[yearIndex]}</div>
           <div className="row mt-2">
             <div className="col">
-              <PieChart pieChart_d = {pieChart_d[0][0]}/>
+              <PieChart pieChart_d = {pieChart_d[yearIndex][0]}/>
             </div>
             <div className="col">
-              <PieChart pieChart_d = {pieChart_d[0][1]}/>
+              <PieChart pieChart_d = {pieChart_d[yearIndex][1]}/>
             </div>
 
           </div>
           <div className="row mt-2">
             <div className="col">
-              <PieChart pieChart_d = {pieChart_d[0][2]}/>
+              <PieChart pieChart_d = {pieChart_d[yearIndex][2]}/>
             </div>
             <div className="col">
-              <PieChart pieChart_d = {pieChart_d[0][3]}/>
+              <PieChart pieChart_d = {pieChart_d[yearIndex][3]}/>
             </div>
           </div>
         </div>
-
         );
     }
   }
 
   render() {
+    const year = this.props.chart.year;
     return (
       <div>
         <Header/>
@@ -152,6 +163,14 @@ class MapContainer extends React.Component {
               <button className="dropdown-item" onClick={this.toPieChart}>PieChart</button>
               <button className="dropdown-item" onClick={this.toTimeBarChart}>TimeBarChart</button>
 
+            </div>
+          </div>
+          <div className="input-group mt-2">
+            <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{this.props.chart.year}</button>
+            <div className="dropdown-menu">
+              <button className="dropdown-item" value={years[0]} onClick={this.changeYear}>{years[0]}</button>
+              <button className="dropdown-item" value={years[1]} onClick={this.changeYear}>{years[1]}</button>
+              <button className="dropdown-item" value={years[2]} onClick={this.changeYear}>{years[2]}</button>
             </div>
           </div>
           {this.renderChart()}
@@ -167,4 +186,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps,{changeChart})(MapContainer);
+export default connect(mapStateToProps,{changeChart,changeYear})(MapContainer);

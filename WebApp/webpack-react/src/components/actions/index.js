@@ -4,7 +4,8 @@ import {
   CHANGE_AURIN,
   ADD_DATA,
   SET_CENTER,
-  SET_TIME
+  SET_TIME,
+  CHANGE_YEAR
 } from '../utils/constants';
 
 export function changeFeature(name) {
@@ -57,6 +58,15 @@ export function setCenter(key) {
 export function setTime(value) {
   return {
     type: SET_TIME,
+    payload: {
+      value:value
+    }
+  };
+}
+
+export function changeYear(value){
+  return {
+    type: CHANGE_YEAR,
     payload: {
       value:value
     }

@@ -24,12 +24,21 @@ export default class Chart extends React.Component {
           hoverBackgroundColor: 'rgb(66,134,244,0.8)',
           hoverBorderColor: 'rgb(66,134,244,1)',
           data: this.props.data[1]
+        },
+        {
+          label: '2019',
+          backgroundColor: 'rgb(255, 206, 86 ,0.5)',
+          borderColor: 'rgb(255, 206, 86 ,1)',
+          borderWidth: 1,
+          hoverBackgroundColor: 'rgb(255, 206, 86 ,0.8)',
+          hoverBorderColor: 'rgb(255, 206, 86 ,1)',
+          data: this.props.data[2]
         }
       ]
     };
     return (
       <div>
-        <div className="display-4 text-dark text-center my-3">Number of gluttony related tweets for different cities in 2014&2015</div>
+        <div className="display-4 text-dark text-center my-3">Number of people who are considered related to obesity according to the tweets for different cities in 2014,2015&2019</div>
         <Bar data={data} />
       </div>
     );

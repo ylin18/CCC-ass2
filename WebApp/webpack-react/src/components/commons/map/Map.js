@@ -148,6 +148,9 @@ class Map extends Component {
       if(e.features.length > 0){
         var coordinates = e.features[0].geometry.coordinates.slice();
         var description = e.features[0].properties.message;
+        var food = e.features[0].properties.foods;
+
+
 
         // Ensure that if the map is zoomed out such that multiple
         // copies of the feature are visible, the popup appears
@@ -158,7 +161,8 @@ class Map extends Component {
 
         new mapboxgl.Popup()
         .setLngLat(coordinates)
-        .setHTML(description)
+        .setHTML("<div class=\"container text-dark\"><strong>Food related topic(s): "+food+ "</strong>"+
+                  "<p>"+description+"</p></div>")
         .addTo(this.map);
       }
     });
@@ -245,8 +249,8 @@ class Map extends Component {
             "fill-color": ["step",["get","density"],'#fcfbfd',50000,'#efedf5',100000,'#dadaeb',150000,'#bcbddc',200000,'#9e9ac8',250000,'#807dba',300000,'#6a51a3',350000,'#4a1486'],
             "fill-opacity": ["case",
                 ["boolean", ["feature-state", "hover"], false],
-                1,
-                0.7
+                0.8,
+                0.6
               ]
           }
       });
