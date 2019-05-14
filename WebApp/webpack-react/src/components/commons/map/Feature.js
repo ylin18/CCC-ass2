@@ -15,14 +15,6 @@ class Feature extends Component {
     this.toObesity = () => {
       this.props.changeAurin("Obesity");
     };
-    this.setTime = (e) =>{
-      if(this.props.feature.time[e.target.value] === "dropdown-item active"){
-        this.props.setTime(e.target.value,"dropdown-item");
-      }else{
-        this.props.setTime(e.target.value,"dropdown-item active");
-      }
-    }
-
   }
 
   render() {

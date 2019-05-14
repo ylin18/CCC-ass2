@@ -1,0 +1,37 @@
+- hosts: webservers
+  tasks:
+    - name: copy myapi image build resource files
+      copy:
+        src: ./myapi
+        dest: /home/ubuntu
+    # - name: stop old myapi container
+    #   become: yes
+    #   raw: docker stop $(docker ps -aqf "name=backapi")
+    # - name: remove old myapi container
+    #   become: yes
+    #   raw: docker rm $(docker ps -aqf "name=backapi")
+    - name: build image for myapi
+      become: yes
+      raw: cd /home/ubuntu/myapi; docker build --tag=myapi:v1 .
+    - name: start myapi service
+      become: yes
+      raw: docker run -d -p 8081:8081 --name backapi myapi:v1
+
+    - name: sleep and waiting for the service from myapi
+      raw: sleep 3
+    - name: copy website image build resource files
+      copy:
+        src: ./website
+        dest: /home/ubuntu
+    # - name: stop old website container
+    #   become: yes
+    #   raw: docker stop $(docker ps -aqf "name=my_website")
+    # - name: remove old website container
+    #   become: yes
+    #   raw: docker rm $(docker ps -aqf "name=my_website")
+    - name: build image for website
+      become: yes
+      raw: cd /home/ubuntu/website; docker build -t webserver-image:v1 .
+    - name: start webserver service
+      become: yes
+      raw: docker run -d -p 80:80 --name my_website webserver-image:v1
