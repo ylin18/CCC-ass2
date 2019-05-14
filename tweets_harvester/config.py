@@ -42,31 +42,31 @@ app_keys_tokens = [
 
 
 geocodes = {
-	'Sydney':"-33.63,150.89,85km",
-	'Melbourne':"-37.80,145.11,75km",
-	'Brisbane':"-27.33,152.81,109km",
-	'Perth':"-32.12,115.68,75km"
+	'sydney':"-33.63,150.89,85km",
+	'melbourne':"-37.80,145.11,75km",
+	'brisbane':"-27.33,152.81,109km",
+	'perth':"-32.12,115.68,75km"
 }
 
 coordinates = {
-	'Sydney':[150.00, -34.30, 151.62, -33.00],
-	'Melbourne':[144.36,-38.50,145.88,-37.18],
-	'Brisbane':[152.10,-28.34,153.55,-26.45],
-	'Perth':[115.40,-32.80,116.41,-31.45]
+	'sydney':[150.00, -34.30, 151.62, -33.00],
+	'melbourne':[144.36,-38.50,145.88,-37.18],
+	'brisbane':[152.10,-28.34,153.55,-26.45],
+	'perth':[115.40,-32.80,116.41,-31.45]
 }
 
 search_appid = {
-	'Sydney': 0,
-	'Melbourne': 1,
-	'Brisbane': 2,
-	'Perth': 3
+	'sydney': 0,
+	'melbourne': 1,
+	'brisbane': 2,
+	'perth': 3
 }
 
 stream_appid = {
-	'Sydney': 4,
-	'Melbourne': 5,
-	'Brisbane': 6,
-	'Perth': 7
+	'sydney': 4,
+	'melbourne': 5,
+	'brisbane': 6,
+	'perth': 7
 }
 
 # city = 'Sydney'
