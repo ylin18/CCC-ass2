@@ -1,3 +1,4 @@
+# python3 tweets_search_harvester.py "Melbourne" "admin:123456@172.26.37.241:5984"
 import tweepy
 import json
 import couchdb
@@ -5,6 +6,7 @@ import time
 import config
 import sys
 import tweets_analysis
+import datetime
 
 start = time.time()
 
@@ -17,31 +19,28 @@ def get_api(app_id):
 	return tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
 
 if __name__ == '__main__':
-	username = "admin"
-	password = "123456"
-	IP = "172.26.37.241"
-	port = "5984"
-	sincedate = "2019-05-10"
-	untildate = "2019-05-13"
 
-	if len(sys.argv) >= 2:
+	if len(sys.argv) >= 3:
 		city_name = sys.argv[1]
 		geocode = config.geocodes[city_name]
+		IPaddress = sys.argv[2]
 	else:
-		print('no parameter!')
+		print('no enough parameter!')
 		sys.exit(0)
 
 	app_id = config.search_appid[city_name]
 	api = get_api(app_id=app_id)
 
-	db_name = city_name.lower() + '_recent'
-	couchserver = couchdb.Server("http://%s:%s@%s:%s/" % (username,password,IP,port))
+	db_name = city_name + '_recent_'
+	couchserver = couchdb.Server("http://%s/" % IPaddress)
 	try:
 		db = couchserver.create(db_name)
 	except:
 		db = couchserver[db_name]
 
 	## search method ##
+	sincedate = datetime.date.today() - datetime.timedelta(days=3)
+	untildate = datetime.date.today()
 	tweets = tweepy.Cursor(api.search, since=sincedate, until=untildate,\
 		geocode=geocode, tweet_mode='extended').items()
 	print('---------- Now collecting Tweets ----------')

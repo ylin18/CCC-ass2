@@ -1,3 +1,4 @@
+# python3 save2db.py "Melbouren" "./1415Perth.json" "admin:123456@172.26.37.241:5984"
 import json
 import couchdb
 import tweets_analysis
@@ -7,20 +8,16 @@ import sys
 start = time.time()
 
 if __name__ == '__main__':
-	username = "admin"
-	password = "123456"
-	IP = "172.26.37.241"
-	port = "5984"
-
-	if len(sys.argv) >= 3:
+	if len(sys.argv) >= 4:
 		city_name = sys.argv[1]
 		file_path = sys.argv[2]
+		IPaddress = sys.argv[3]
 	else:
 		print('no enough parameters!')
 		sys.exit(0)
 
-	db_name = city_name.lower() + "_past"
-	couchserver = couchdb.Server("http://%s:%s@%s:%s/" % (username,password,IP,port))
+	db_name = city_name + "_past_"
+	couchserver = couchdb.Server("http://%s/" % IPaddress)
 	try:
 		db = couchserver.create(db_name)
 	except:
