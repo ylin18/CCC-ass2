@@ -12,6 +12,8 @@ class MapContainer extends React.Component {
 
   constructor(props){
     super(props);
+    this.yearTotal = [];
+    this.calTimeBarChart();
     this.toBarChart = () => {
       this.props.changeChart("BarChart");
     };
@@ -61,6 +63,12 @@ class MapContainer extends React.Component {
       })
       count += 1;
     });
+
+    for(var i = 0; i < 2; i++){
+      for(var j = 0; j < 4; j++){
+        barChart[i][j] = barChart[i][j]/this.yearTotal[i][j];
+      }
+    }
     return barChart;
   }
 
@@ -72,17 +80,30 @@ class MapContainer extends React.Component {
     var list = ["Timeblock1 0-3","Timeblock2 3-6","Timeblock3 6-9","Timeblock4 9-12","Timeblock5 12-15","Timeblock6 15-18","Timeblock7 18-21","Timeblock8 21-0"];
     chartsData.map(year=>{
       barChart.push([]);
+      var tweets_num = 0;
+      this.yearTotal.push([]);
       year.cities.map(city=>{
         var data_d = [];
         var timeblocks = city.timeblocks;
         for(var i = 0; i< list.length;i++){
           data_d.push(timeblocks[list[i]]);
+          tweets_num += timeblocks[list[i]];
         }
+        this.yearTotal[count].push(tweets_num);
         barChart[count].push(data_d);
         // console.log(city);
       })
       count += 1;
     });
+
+    for(var i = 0; i < 2; i++){
+      for(var j = 0; j < 4; j++){
+        for(var k = 0; k < 8; k++){
+          barChart[i][j][k] = barChart[i][j][k]/this.yearTotal[i][j];
+        }
+      }
+    }
+
     return barChart;
   }
 

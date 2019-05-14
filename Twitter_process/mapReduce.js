@@ -9,7 +9,7 @@
 */
 // map function
 function(doc) {
-	var foods = doc.foodtags;
+	var foods = doc.foods;
 	foods.forEach(function(f) {
 		emit(f, doc.user.id);
 	});
@@ -34,10 +34,13 @@ function(keys, values, rereduce) {
 */
 // map function 
 function(doc) {
-	var foods = doc.foodtags;
-	foods.forEach(function(f) {
-		emit(doc.user.id, f);
-	});
+	var foods = doc.foods;
+	var time = doc.created_at;
+	if (Date.parse(time) < new Date('2014-12-31') && Date.parse(time) > new Date('2014-01-01')) {
+		foods.forEach(function(f) {
+			emit(doc.user.id, f);
+		});
+	}
 }
 // reduce
 function(keys, values, rereduce) {
@@ -54,22 +57,43 @@ function(keys, values, rereduce) {
 }
 
 /*
-	function3: group by time
+	function3: emit location
+*/
+// map function
+function(doc) {
+	var foods = doc.foods;
+	var coordinates = doc.coordinates.coordinates;
+	var time = doc.created_at;
+	if (Date.parse(time) < new Date('2014-12-31') && Date.parse(time) > new Date('2014-01-01')) {
+		if (foods.length > 0) {
+			emit(foods, coordinates)
+		}
+	}
+}
+
+
+/*
+	function4: group by time
 	desc: find out 
 */
 // map function
 function(doc) {
-	var timeslots = ["0-3","3-6","6-9","9-12","12-15","15-18","18-21","21-0"]
+	var timeslots = ["0-3","3-6","6-9","9-12","12-15","15-18","18-21","21-0"];
+	var foods = doc.foods;
 
 	var time = doc.created_at;
-	var unixtime = Date.parse(time);
-	var date = new Date(unixtime);
-	var hours = date.getUTCHours();
+	if (Date.parse(time) < new Date('2014-12-31') && Date.parse(time) > new Date('2014-01-01')) {
+		var unixtime = Date.parse(time);
+		var date = new Date(unixtime);
+		var hours = date.getUTCHours();
 
-	blocknum = Math.floor(hours / 3) + 1;
-	timeblock = "Timeblock" + blocknum + " " + timeslots[blocknum-1];
+		blocknum = Math.floor(hours / 3) + 1;
+		timeblock = "Timeblock" + blocknum + " " + timeslots[blocknum-1];
 
-	emit(timeblock, time);
+		if ( foods.length > 0 ) {
+			emit(timeblock, time);
+		}
+	}
 }
 // reduce
 function(keys, values, rereduce) {
@@ -84,4 +108,41 @@ function(keys, values, rereduce) {
 		}
 	}
 }
+
+/*
+	function5: total distinctive number of people who post tweets
+	desc:
+*/
+// map function 
+function(doc) {
+	var time = doc.created_at;
+	if (Date.parse(time) < new Date('2014-12-31') && Date.parse(time) > new Date('2014-01-01')) {
+		emit(doc.user.id, doc._id)
+	}
+}
+// reduce, sum 
+function(keys, values, rereduce) {
+	if (rereduce) {
+		return {
+		  'count': values.reduce(function(a, b) { return a + b.count }, 0)
+		}
+	}
+	else {
+		return {
+		  'count': values.length
+		}
+	}
+}
+
+
+/*
+	function6: total number of tweets in a year
+*/
+function(doc) {
+	var time = doc.created_at;
+	if (Date.parse(time) < new Date('2014-12-31') && Date.parse(time) > new Date('2014-01-01')) {
+		emit(doc._id, 1)
+	}
+}
+
 
