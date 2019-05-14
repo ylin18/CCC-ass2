@@ -57,7 +57,7 @@ def f():
 		"features": feature_list
 	}
 
-	return json.dumps({'result': result_list})
+	return jsonify({'result': result_list})
 
 
 
