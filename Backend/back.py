@@ -156,7 +156,7 @@ def getPlpnum():
 		db = locdb[loc]
 
 	timeblock_cnt = {}
-	dv = db.view('_design/plpnum/_view/plp-view'+str(year), reduce=True, group=True)
+	dv = db.view('_design/plpview/_view/plp-view'+str(year), reduce=True, group=True)
 	cnt = 0
 	for i in dv:
 		cnt+=1
@@ -176,7 +176,7 @@ def getTweetnum():
 		db = locdb[loc]
 
 	timeblock_cnt = {}
-	dv = db.view('_design/plpnum/_view/tweetnum-view'+str(year))
+	dv = db.view('_design/plpview/_view/tweetnum-view'+str(year))
 	cnt = 0
 	for i in dv:
 		cnt+=1
@@ -228,5 +228,5 @@ def hellof():
 
 
 if __name__ == '__main__':
-	# app.run(host='0.0.0.0',port=8081)
-	app.run() 
+	app.run(host='0.0.0.0',port=8081)
+	# app.run() 
