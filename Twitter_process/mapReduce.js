@@ -109,3 +109,40 @@ function(keys, values, rereduce) {
 	}
 }
 
+/*
+	function5: total distinctive number of people who post tweets
+	desc:
+*/
+// map function 
+function(doc) {
+	var time = doc.created_at;
+	if (Date.parse(time) < new Date('2014-12-31') && Date.parse(time) > new Date('2014-01-01')) {
+		emit(doc.user.id, doc._id)
+	}
+}
+// reduce, sum 
+function(keys, values, rereduce) {
+	if (rereduce) {
+		return {
+		  'count': values.reduce(function(a, b) { return a + b.count }, 0)
+		}
+	}
+	else {
+		return {
+		  'count': values.length
+		}
+	}
+}
+
+
+/*
+	function6: total number of tweets in a year
+*/
+function(doc) {
+	var time = doc.created_at;
+	if (Date.parse(time) < new Date('2014-12-31') && Date.parse(time) > new Date('2014-01-01')) {
+		emit(doc._id, 1)
+	}
+}
+
+

@@ -122,6 +122,34 @@ viewData_map19={
 }
 
 
+viewData_peoplenum={
+	"plp-view14" : {
+		"map": "function(doc) {var time = doc.created_at;if (Date.parse(time) < new Date('2014-12-31') && Date.parse(time) > new Date('2014-01-01')) {emit(doc.user.id, doc._id)}}",
+		"reduce":"function(keys, values, rereduce) {if (rereduce) {return {'count': values.reduce(function(a, b) { return a + b.count }, 0)}}else {return {'count': values.length}}}"
+	},
+	"plp-view15" : {
+		"map": "function(doc) {var time = doc.created_at;if (Date.parse(time) < new Date('2015-12-31') && Date.parse(time) > new Date('2015-01-01')) {emit(doc.user.id, doc._id)}}",
+		"reduce":"function(keys, values, rereduce) {if (rereduce) {return {'count': values.reduce(function(a, b) { return a + b.count }, 0)}}else {return {'count': values.length}}}"
+	},
+	"tweetnum-view14": {
+		"map":"function(doc) {var time = doc.created_at;if (Date.parse(time) < new Date('2014-12-31') && Date.parse(time) > new Date('2014-01-01')) {emit(doc._id, 1)}}"
+	},
+	"tweetnum-view15": {
+		"map":"function(doc) {var time = doc.created_at;if (Date.parse(time) < new Date('2015-12-31') && Date.parse(time) > new Date('2015-01-01')) {emit(doc._id, 1)}}"
+	}
+}
+viewData_peoplenum19={
+	"plp-view19" : {
+		"map": "function(doc) {var time = doc.created_at;if (Date.parse(time) < new Date('2019-12-31') && Date.parse(time) > new Date('2019-01-01')) {emit(doc.user.id, doc._id)}}",
+		"reduce":"function(keys, values, rereduce) {if (rereduce) {return {'count': values.reduce(function(a, b) { return a + b.count }, 0)}}else {return {'count': values.length}}}"
+	},
+	"tweetnum-view19": {
+		"map":"function(doc) {var time = doc.created_at;if (Date.parse(time) < new Date('2019-12-31') && Date.parse(time) > new Date('2019-01-01')) {emit(doc._id, 1)}}"
+	}
+}
+
+
+
 def create_design_doc(design, view):
     try:
         melbpast[design] = dict(language='javascript', views=view)
@@ -157,13 +185,16 @@ def create_design_doc19(design, view):
 
 
 if __name__ == '__main__':
-	create_design_doc('_design/mapview', viewData_map)
-	create_design_doc('_design/foodtags', viewData_foodtags)
-	create_design_doc('_design/timeblock', viewData_timeblock)
+	# create_design_doc('_design/mapview', viewData_map)
+	# create_design_doc('_design/foodtags', viewData_foodtags)
+	# create_design_doc('_design/timeblock', viewData_timeblock)
 
-	create_design_doc19('_design/mapview', viewData_map19)
-	create_design_doc19('_design/foodtags', viewData_foodtags19)
-	create_design_doc19('_design/timeblock', viewData_timeblock19)
+	# create_design_doc19('_design/mapview', viewData_map19)
+	# create_design_doc19('_design/foodtags', viewData_foodtags19)
+	# create_design_doc19('_design/timeblock', viewData_timeblock19)
+
+	create_design_doc('_design/plpview', viewData_peoplenum)
+	create_design_doc19('_design/plpview', viewData_peoplenum19)
 	print("done")
 
 

@@ -5,9 +5,11 @@
       "cities":[
         {
           "city":"Melbourne",
-          "num": 503,
+          "num": 503,   // people     
           "foodtags": [["port", 4745], ["tea", 4228], ["coffee", 2798], ["ham", 2683], ["cafe", 1758]],
+          // the number of appearance of the food 
           "timeblocks": {"Timeblock1 0-3": 2546,"Timeblock2 3-6": 2493,"Timeblock3 6-9": 2557,"Timeblock4 9-12": 2605,"Timeblock5 12-15": 1157,"Timeblock6 15-18": 233,"Timeblock7 18-21": 367,"Timeblock8 21-0": 1629}
+          // tweets number - only gluttony tweets 
         },
         {
           "city":"Sydney",

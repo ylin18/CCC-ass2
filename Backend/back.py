@@ -143,6 +143,46 @@ def getTimeblock():
 	return jsonify({ 'timeblocks' : timeblock_cnt })
 
 
+@app.route('/api/plpnum', methods=['POST'])
+def getPlpnum():
+	if not request.json or not 'location' in request.json:
+		abort(400)
+	loc = request.json['location']
+	year = request.json['year']
+
+	if year == 19:
+		db = locdb19[loc]
+	else:
+		db = locdb[loc]
+
+	timeblock_cnt = {}
+	dv = db.view('_design/plpnum/_view/plp-view'+str(year), reduce=True, group=True)
+	cnt = 0
+	for i in dv:
+		cnt+=1
+
+	return jsonify({ "plpnum" : cnt })
+
+@app.route('/api/tweetsnum', methods=['POST'])
+def getTweetnum():
+	if not request.json or not 'location' in request.json:
+		abort(400)
+	loc = request.json['location']
+	year = request.json['year']
+
+	if year == 19:
+		db = locdb19[loc]
+	else:
+		db = locdb[loc]
+
+	timeblock_cnt = {}
+	dv = db.view('_design/plpnum/_view/tweetnum-view'+str(year))
+	cnt = 0
+	for i in dv:
+		cnt+=1
+
+	return jsonify({ "tweetnum" : cnt })
+
 # Rondo codes
 @app.route('/aurinObese',methods=['GET'])
 def aurinObese():
