@@ -6,6 +6,8 @@
             {
                "city":"Melbourne",
                "num":263,
+               "plpnum":21892,
+               "tweetnum":209883,
                "foodtags":[
                   [
                      "coffee",
@@ -42,6 +44,8 @@
             {
                "city":"Sydney",
                "num":1354,
+               "plpnum":36768,
+               "tweetnum":741881,
                "foodtags":[
                   [
                      "coffee",
@@ -78,6 +82,8 @@
             {
                "city":"Perth",
                "num":233,
+               "plpnum":9261,
+               "tweetnum":171227,
                "foodtags":[
                   [
                      "coffee",
@@ -114,6 +120,8 @@
             {
                "city":"Brisbane",
                "num":210,
+               "plpnum":10480,
+               "tweetnum":152726,
                "foodtags":[
                   [
                      "coffee",
@@ -155,6 +163,8 @@
             {
                "city":"Melbourne",
                "num":326,
+               "plpnum":24665,
+               "tweetnum":200133,
                "foodtags":[
                   [
                      "coffee",
@@ -191,6 +201,8 @@
             {
                "city":"Sydney",
                "num":1141,
+               "plpnum":37569,
+               "tweetnum":562704,
                "foodtags":[
                   [
                      "coffee",
@@ -227,6 +239,8 @@
             {
                "city":"Perth",
                "num":222,
+               "plpnum":10798,
+               "tweetnum":129530,
                "foodtags":[
                   [
                      "coffee",
@@ -263,6 +277,8 @@
             {
                "city":"Brisbane",
                "num":224,
+               "plpnum":11711,
+               "tweetnum":128661,
                "foodtags":[
                   [
                      "coffee",
@@ -304,6 +320,8 @@
             {
                "city":"Melbourne",
                "num":79,
+               "plpnum":88267,
+               "tweetnum":328546,
                "foodtags":[
                   [
                      "sweet",
@@ -340,6 +358,8 @@
             {
                "city":"Sydney",
                "num":71,
+               "plpnum":95582,
+               "tweetnum":329311,
                "foodtags":[
                   [
                      "cake",
@@ -376,6 +396,8 @@
             {
                "city":"Perth",
                "num":21,
+               "plpnum":27285,
+               "tweetnum":83987,
                "foodtags":[
                   [
                      "beer",
@@ -412,6 +434,8 @@
             {
                "city":"Brisbane",
                "num":19,
+               "plpnum":28976,
+               "tweetnum":106432,
                "foodtags":[
                   [
                      "coffee",

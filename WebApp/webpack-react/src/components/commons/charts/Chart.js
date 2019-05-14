@@ -38,7 +38,7 @@ export default class Chart extends React.Component {
     };
     return (
       <div>
-        <div className="display-4 text-dark text-center my-3">Number of people who are considered related to obesity according to the tweets for different cities in 2014,2015&2019</div>
+        <div className="display-4 text-dark text-center my-3">Percentage of people who are considered related to obesity according to the tweets in 2014, 2015 & 2019</div>
         <Bar data={data} />
       </div>
     );

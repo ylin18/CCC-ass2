@@ -52,7 +52,7 @@ export default class TimeBarChart extends React.Component {
       ]
     };
     return( <div className="mb-3">
-              <div className="display-4 text-dark text-center my-3">Number of tweets for different cities in different time periods of {years[index]}</div>
+              <div className="display-4 text-dark text-center my-3">Percentage of tweets in different time periods ({years[index]}）</div>
               <Bar data={data} />
             </div>
     );
