@@ -1,7 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/lab/Slider';
-import { cyan500 } from 'material-ui/styles/colors';
 import {setTime} from "../../actions";
 import {connect} from "react-redux";
 
