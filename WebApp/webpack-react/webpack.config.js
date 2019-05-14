@@ -6,6 +6,7 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'public/dist'),
+    publicPath: '/'
   },
   module: {
    rules: [
@@ -40,6 +41,9 @@ module.exports = {
        use: [ 'style-loader', 'css-loader' ]
      },
    ]
+  },
+  devServer: {
+    historyApiFallback: true,
   },
   plugins: [
     new HtmlWebPackPlugin({
