@@ -33,7 +33,17 @@ export default class Chart extends React.Component {
           hoverBackgroundColor: 'rgb(255, 206, 86 ,0.8)',
           hoverBorderColor: 'rgb(255, 206, 86 ,1)',
           data: this.props.data[2]
+        },
+        {
+          label: 'Aurin 2014-15',
+          backgroundColor: 'rgb(237,184,28,0.5)',
+          borderColor: 'rgb(237,184,28,1)',
+          borderWidth: 1,
+          hoverBackgroundColor: 'rgb(237,184,28,0.8)',
+          hoverBorderColor: 'rgb(237,184,28,1)',
+          data: [19.027, 21.214, 18.871,18.289]
         }
+
       ]
     };
     return (
