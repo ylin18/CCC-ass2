@@ -1,0 +1,44 @@
+#Coding by Xudong Ma at 02/05/2019
+- name: Gather facts of remote host
+  setup:
+    gather_subset: all
+
+- name: get environment arguments
+  shell: cat /etc/environment
+  register: env_args
+
+- name: set proxy
+  tags: always
+  become: yes
+  lineinfile:
+    path: /etc/environment
+    line: "{{ item }}"
+    create: yes
+  loop: "{{proxys}}"
+
+- name: add public keys
+  lineinfile:
+    path: ~/.ssh/authorized_keys
+    line: "{{item}}"
+  loop: "{{public_keys}}"
+
+- name: Install some tools
+  tags: always
+  become: yes
+  apt:
+    name: ['vim','python3-pip'] 
+    state: latest
+    install_recommends: no
+    update_cache: yes
+
+- name: install python packages
+  pip:
+    name: "{{my_packages}}"
+    executable: pip3
+
+# - name: Updata pip 
+#   tags: always
+#   become: yes
+#   pip:
+#     name: ['pip']
+#     state: latest

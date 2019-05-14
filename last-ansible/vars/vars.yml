@@ -1,0 +1,79 @@
+availability_zone: melbourne-qh2-uom
+inventory_file: inventory/hosts.ini
+variables_file: vars/host_vars.yml
+sleep_time: 60
+ssh_info: "ansible_ssh_private_key_file=~/.ssh/xudongm.pem ansible_user=ubuntu ansible_ssh_common_args='-o StrictHostKeyChecking=no'"
+instance_image: afccf48a-9426-4618-86dc-0ceb636f0169
+private_key: xudongm
+instance_flavor: uom.mse.2c9g
+
+volumes:
+  - vol_name: mytest1-vol-1
+    vol_size: 10
+  - vol_name: mytest1-vol-2
+    vol_size: 50
+  - vol_name: mytest2-vol-1
+    vol_size: 10
+  - vol_name: mytest2-vol-2
+    vol_size: 50
+  - vol_name: mytest3-vol-1
+    vol_size: 10
+  - vol_name: mytest3-vol-2
+    vol_size: 50
+  - vol_name: mytest4-vol-1
+    vol_size: 10
+  - vol_name: mytest4-vol-2
+    vol_size: 50
+
+security_groupss:
+  - ssh
+  - http
+  - default
+  - couchdb5984port
+  - internal
+
+security_groups:
+  - name: my_ssh
+    description: "security group for ssh access"
+    protocol: tcp
+    port_range_min: 22
+    port_range_max: 22
+    remote_ip_prefix: 0.0.0.0/0
+  - name: my_http
+    description: "security group for http access"
+    protocol: tcp
+    port_range_min: 80
+    port_range_max: 80
+    remote_ip_prefix: 0.0.0.0/0
+  - name: my_couchdb
+    description: "security group for couchdb"
+    protocol: tcp
+    port_range_min: 5984
+    port_range_max: 5984
+    remote_ip_prefix: 0.0.0.0/0
+internal_security_group:
+  - name: my_internal
+    description: "internal security group"
+    interface: internal
+    remote_group: my_internal
+
+#instance
+instances:
+  - name: mytest1     
+    volume_names:
+      - mytest1-vol-1
+      - mytest1-vol-2
+  - name: mytest2
+    volume_names:
+      - mytest2-vol-1
+      - mytest2-vol-2  
+  - name: mytest3
+    volume_names:
+      - mytest3-vol-1
+      - mytest3-vol-2 
+  - name: mytest4
+    volume_names:
+      - mytest4-vol-1
+      - mytest4-vol-2 
+
+

@@ -1,0 +1,4 @@
+ssh -i /Users/liurongxiao/rongxiaol.pem ubuntu@$1 "cd tweets_harvester; chmod 777 ./harvest_city_ip.sh; nohup ./harvest_city_ip.sh sydney $5 >/dev/null 2>&1 &"
+ssh -i /Users/liurongxiao/rongxiaol.pem ubuntu@$2 "cd tweets_harvester; chmod 777 ./harvest_city_ip.sh; nohup ./harvest_city_ip.sh melbourne $5 >/dev/null 2>&1 &"
+ssh -i /Users/liurongxiao/rongxiaol.pem ubuntu@$3 "cd tweets_harvester; chmod 777 ./harvest_city_ip.sh; nohup ./harvest_city_ip.sh brisbane $5 >/dev/null 2>&1 &"
+ssh -i /Users/liurongxiao/rongxiaol.pem ubuntu@$4 "cd tweets_harvester; chmod 777 ./harvest_city_ip.sh; nohup ./harvest_city_ip.sh perth $5 >/dev/null 2>&1 &"
