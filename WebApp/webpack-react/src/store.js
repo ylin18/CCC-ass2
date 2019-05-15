@@ -2,7 +2,7 @@ import { createStore } from 'redux';
 import reducers from './components/reducers';
 import {addData} from './components/actions';
 import axios from "axios";
-const root = "http://172.26.38.153:8081/";
+const root = "http://172.26.38.106:8081/";
 
 const store = createStore(reducers);
 
