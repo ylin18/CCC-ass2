@@ -1,3 +1,11 @@
 - hosts: webservers
-  - tasks:
+  tasks:
+    - name: copy tweets havester to the server
+      copy: 
+        src: ./tweets_harvester
+        dest: /home/ubuntu
+
+    - name: run the data havester
+      become: yes
+      raw: cd /home/ubuntu/tweets_harvester; chmod +x *; ./run.sh admin:123456@172.26.36.180:5984
     
