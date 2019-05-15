@@ -10,4 +10,4 @@ Zijie Shen  741404
 
 This repository includes all original codes of team 37 for Assignment 2 (COMP90024 Cluster and cloud computing), which is about building corroboratory instances on Nectar research cloud and based on which we retrieve information from Twitter in cities across Australia. Finally, we would analyze these data combined with data from the AURIN platform, in order to dig out interesting stories, particularly in the scenario of Gluttony, one of the seven deadly sins.
 
-## Demo Video in YouTube： https://www.youtube.com/watch?v=SaF67tXHJNI&feature=youtu.be
+Demo Video in YouTube： https://www.youtube.com/watch?v=SaF67tXHJNI&feature=youtu.be
